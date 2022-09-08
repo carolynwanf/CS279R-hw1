@@ -46,6 +46,7 @@ app.post("/", async (req, res) => {
   }
 });
 
+// Logic for editing todos
 app
   .route("/edit/:id")
   .get((req, res) => {
@@ -64,3 +65,14 @@ app
       res.redirect("/"); // Redirecting the page back to the default view
     });
   });
+
+// Logic for deleting todos
+app.route("/remove/:id").get((req, res) => {
+  // Removing the task from the database
+  const id = req.params.id;
+  TodoTask.findByIdAndRemove(id, (err) => {
+    if (err) return res.send(500, err);
+    // Redirecting the page back to the default view
+    res.redirect("/");
+  });
+});
