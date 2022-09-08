@@ -34,14 +34,14 @@ app.set("view engine", "ejs");
 app.get("/", (req, res) => {
   console.log("finding tasks");
   TodoTask.find({}, (err, tasks) => {
+    // these comments never load in the deployed version
     console.log("rendering");
     res.render("todo.ejs", { todoTasks: tasks });
     console.log("done rendering");
   });
 });
 
-console.log("done loading the default page");
-
+// Add new todos into the database
 app.post("/", async (req, res) => {
   const todoTask = new TodoTask({
     content: req.body.content,
