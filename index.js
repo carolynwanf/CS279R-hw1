@@ -30,10 +30,9 @@ app.use(express.urlencoded({ extended: true }));
 // View engine configuration
 app.set("view engine", "ejs");
 
-console.log("loading the default page");
-
 // Rendering todo.ejs upon a get request to the default path
 app.get("/", (req, res) => {
+  console.log("finding tasks");
   TodoTask.find({}, (err, tasks) => {
     console.log("rendering");
     res.render("todo.ejs", { todoTasks: tasks });
