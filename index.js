@@ -19,6 +19,8 @@ mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true }, () => {
   app.listen(port, () => console.log("server running on port", port));
 });
 
+console.log("configuring the app");
+
 // Configuring access to the "public" folder
 app.use("/static", express.static("public"));
 
@@ -27,6 +29,8 @@ app.use(express.urlencoded({ extended: true }));
 
 // View engine configuration
 app.set("view engine", "ejs");
+
+console.log("loading the default page");
 
 // Rendering todo.ejs upon a get request to the default path
 app.get("/", (req, res) => {
