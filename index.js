@@ -14,8 +14,9 @@ const TodoTask = require("./models/TodoTask");
 // Connecting to the database
 mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true }, () => {
   console.log("Connected to db!");
-  // Listening for connections on port 3000
-  app.listen(3000, () => console.log("server running on port 3000"));
+  // Listening for connections on port
+  var port = process.env.PORT || 3000;
+  app.listen(port, () => console.log("server running on port", port));
 });
 
 // Configuring access to the "public" folder
