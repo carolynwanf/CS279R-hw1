@@ -35,9 +35,13 @@ console.log("loading the default page");
 // Rendering todo.ejs upon a get request to the default path
 app.get("/", (req, res) => {
   TodoTask.find({}, (err, tasks) => {
+    console.log("rendering");
     res.render("todo.ejs", { todoTasks: tasks });
+    console.log("done rendering");
   });
 });
+
+console.log("done loading the default page");
 
 app.post("/", async (req, res) => {
   const todoTask = new TodoTask({
