@@ -49,16 +49,18 @@ app.post("/", async (req, res) => {
 app
   .route("/edit/:id")
   .get((req, res) => {
+    // Rendering the edit view of the page when edit process is initiated
     const id = req.params.id;
     TodoTask.find({}, (err, tasks) => {
       res.render("todoEdit.ejs", { todoTasks: tasks, idTask: id });
     });
   })
   .post((req, res) => {
+    // Updating the database with the changes submitted
     const id = req.params.id;
     TodoTask.findByIdAndUpdate(id, { content: req.body.content }, (err) => {
       if (err) return res.send(500, err);
 
-      res.redirect("/");
+      res.redirect("/"); // Redirecting the page back to the default view
     });
   });
